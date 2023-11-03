@@ -1,0 +1,20 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="">
+  <head>
+    <meta charset="utf-8">
+    <title>HCAI</title>
+    <link rel="stylesheet" href="{% static 'src/styles.css' %}">
+  </head>
+
+  {% block body %}
+  <body class="h-screen {{body_classes}}">
+    <header></header>
+      {% block nav %}{% endblock nav %}
+      <main class="h-full">
+        {% block content %}{% endblock content %}
+      </main>
+    <footer></footer>
+  </body>
+  {% endblock %}
+</html>

@@ -21,10 +21,8 @@ urlpatterns = [
     path("admin/", admin.site.urls),
 ]
 
-from . import views
+from .app import home
 
 urlpatterns = [
-    path('hello/', views.hello_world, name='hello-world'),
-    path('post-survey/', views.post_survey, name='post-survey'),
-    path('post-predict/', views.post_predict, name='post-predict'),
+    path("", home.index, name="home"),
 ]
