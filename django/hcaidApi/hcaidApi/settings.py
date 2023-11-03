@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "tailwind",
+    'hcaidApi', # Apparently this is needed to make the app work
 ]
 
 MIDDLEWARE = [
