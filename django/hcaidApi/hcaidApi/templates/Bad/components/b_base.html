@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block nav %}
+    {% include './nav.html' %}
+{% endblock nav %}
+
+{% block body %}
+    {% with body_classes="bg-zinc-100 text-black" %}
+        {{ block.super }}
+    {% endwith %}
+{% endblock %}
+
+{% block footer %}
+    {% include './footer.html' %}
+{% endblock footer %}

@@ -1,0 +1,37 @@
+{% extends "./components/b_base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="flex justify-center items-center h-screen">
+    <div class="w-full max-w-xs">
+      <form class="flex flex-col gap-5 p-5 bg-zinc-600 shadow-md rounded" action="/bad/apply/" method="post">
+        {% csrf_token %}
+        <div class="flex flex-col gap-2">
+          {% for field in form %}
+          <div>
+            <label 
+            class="block text-white text-sm font-bold pb-3 [&>a]:underline [&>a]:underline-offset-4 [&>a]:decoration-2 [&>a]:hover:decoration-4 [&>a]:decoration-sky-500 [&>a]:dark:decoration-sky-400" 
+            for="{{ field.auto_id }}">
+            {{ field.label }}
+          </label>
+            <!-- [&>\*]:accesses children classes   -->
+            <div class="flex justify-center [&>input]:w-full text-black">
+              {{ field }}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <!-- <input class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" value="Submit"> -->
+        <input
+        href="/bad/apply"
+        type="submit"
+        value="Submit"
+        class="rounded border-2 border-neutral-50 px-7 pb-[8px] pt-[10px] text-sm font-medium uppercase leading-normal text-neutral-50 transition duration-150 ease-in-out hover:border-neutral-100 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-neutral-100 focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-200 active:text-neutral-200 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+        data-te-ripple-init
+        data-te-ripple-color="light">
+      </form>
+    </div>
+  </div>
+
+{% endblock content %}
