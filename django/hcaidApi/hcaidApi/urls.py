@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import include, path
 
+from hcaidApi.app.home import index as home_index
+
 from hcaidApi.app.bad import home as bad_home
 from hcaidApi.app.bad import apply as bad_apply
 from hcaidApi.app.bad import stats as bad_stats
@@ -26,7 +28,7 @@ good_patterns = [
 ]
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path("", home_index),
     path("bad/", include(bad_patterns)),
     path("good/", include(good_patterns)),
 ]

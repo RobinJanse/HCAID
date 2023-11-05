@@ -27,6 +27,7 @@ SECRET_KEY = "django-insecure-2ls_zhni7f=@b6^j%ywv7xpq+q7c9c=+5+_z46=ik2-q1#jo8t
 DEBUG = True
 
 ALLOWED_HOSTS = []
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
 
 # Application definition
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "tailwind",
+    "theme",
     'hcaidApi', # Apparently this is needed to make the app work
 ]
 

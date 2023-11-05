@@ -4,6 +4,7 @@ import pickle
 import os
 # Neccessary for the model
 from django.conf import settings
+from sklearn.preprocessing import LabelEncoder
 
 
 class AIModelBad:
@@ -38,4 +39,17 @@ class AIModelBad:
         else:
             prediction = 1
         return prediction
+
+    def predict_good(self, age, gender, country, seek_help, tech_company, remote_work):
+        print("Predicting using the good model")
+
+        le = LabelEncoder()
         
+        gender_encoded = le.fit_transform([gender])[0]
+        country_encoded = le.fit_transform([country])[0]
+        
+        X = np.array([[age, gender_encoded, country_encoded, seek_help, tech_company, remote_work]])
+        prediction = self.rfc_model.predict(X)
+        prediction_list = prediction.tolist()
+        
+        return prediction_list[0]

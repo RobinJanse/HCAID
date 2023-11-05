@@ -1,10 +1,23 @@
 {% extends "./components/b_base.html" %}
-
 {% load static %}
 
 {% block content %}
-<section class="main-content px-6 py-4">
-    <h1 class="text-4xl font-bold text-center text-gray-800 mb-4">Job Applications Statistics</h1>
-</section>
+<section style="padding: 1.5rem;" class="main-content">
+    <h1 style="font-size: 2.25rem; font-weight: bold; color: #333; text-align: center; margin-bottom: 1rem;" class="text-4xl font-bold text-center text-gray-800">Job Applications Statistics</h1>
 
+    <div style="text-align: center;">
+        <h2 style="font-size: 1.125rem; font-weight: bold; color: #333; margin-bottom: 0.5rem;" class="text-2xl font-bold text-gray-600 mb-2">Statistics Overview</h2>
+        <p style="font-size: 1rem; color: #333; margin-bottom: 1rem;" class="text-gray-600 mb-4">This page shows the statistics of the job applications that have been processed by the system. The AI model, based on machine learning, makes predictions about the applications. The model has a test accuracy of RFC accuracy: 70.29%, indicating its ability to make accurate predictions.</p>
+        <p style="font-size: 1rem; color: #333;">Keep in mind that the predicted application decision is based on machine learning, where features like age, gender, country, and seeking help are significant factors in the decision-making process.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr; grid-gap: 1rem; @apply md:grid-cols-2 md:gap-6; margin-top: 50px; margin-left: 50px; margin-right: 50px;">
+        {% for statistic in statistics_data %}
+            <div style="background-color: white; padding: 1.5rem; border-radius: 0.375rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
+                <h3 style="font-size: 1.125rem; font-weight: bold; color: #333; margin-bottom: 0.5rem;">{{ statistic.title }}</h3>
+                <p style="font-size: 1rem; color: {% if statistic.title == 'Prediction Value' %}{% if statistic.value == 'Yes' %}green{% else %}red{% endif %}{% else %}inherit{% endif %};"><b>{{ statistic.value }}</b></p>
+            </div>
+        {% endfor %}
+    </div>
+</section>
 {% endblock content %}

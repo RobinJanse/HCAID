@@ -1,24 +1,28 @@
 {% extends "./components/b_base.html" %}
-
 {% load static %}
 
 {% block content %}
-<div class="flex justify-center items-center h-screen">
-    <div class="w-full max-w-md">
-      <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="/good/apply/" method="post">
-        {% csrf_token %}
-        {% for field in form %}
-          <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-bold mb-2" for="{{ field.auto_id }}">
-              {{ field.label }}
-            </label>
-            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="{{ field.auto_id }}" type="text" placeholder="{{ field.label }}">
-          </div>
-        {% endfor %}
-        <div class="flex items-center justify-between">
-          <input class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" value="Submit">
+<div style="display: flex; justify-content: center; align-items: center; min-height: 100vh;">
+  <div style="max-width: 24rem; width: 100%;">
+    <form
+      style="background: white; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); border-radius: 0.375rem; padding: 1.25rem;"
+      action="/good/apply/" method="post">
+      {% csrf_token %}
+
+      {% for field in form %}
+      <div style="margin-bottom: 1rem;">
+        <label style="display: block; font-size: 1rem; color: #666; margin-bottom: 0.5rem;">{{ field.label }}</label>
+        <div style="border: 1px solid #ccc; border-radius: 0.375rem; padding: 0.5rem;">
+          {{ field }}
         </div>
-      </form>
-    </div>
+      </div>
+      {% endfor %}
+
+      <div style="display: flex; justify-content: space-between; margin-top: 1rem;">
+        <input type="submit" value="Submit"
+          style="background-color: #3490dc; color: #fff; font-size: 1rem; border: none; padding: 0.5rem 1rem; cursor: pointer; border-radius: 0.375rem;">
+      </div>
+    </form>
   </div>
+</div>
 {% endblock content %}
