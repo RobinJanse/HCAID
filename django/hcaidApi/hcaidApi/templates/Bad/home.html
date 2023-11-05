@@ -3,10 +3,21 @@
 {% load static %}
 
 {% block content %}
-<section class="main-content">
-    <h1>Welcome to BadCo AI Job Applications</h1>
-    <p>Where our AI makes bad hiring decisions so you don't have to!</p>
-    <p>Apply today and join the chaos.</p>
+<section class="main-content px-6 py-4">
+    <h1 class="text-4xl font-bold text-center text-gray-800 mb-4">Welcome to BadCo AI Job Applications</h1>
+    <p class="text-lg text-center text-gray-600 mb-2">Where our AI makes bad hiring decisions so you don't have to!</p>
+    <p class="text-lg text-center text-gray-600 mb-6">Apply today and join the chaos.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white p-6 rounded shadow">
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">Why Join Us?</h2>
+            <p class="text-gray-600">Join us and be part of a rapidly growing community that challenges the norm. We believe in doing things differently.</p>
+        </div>
+        <div class="bg-white p-6 rounded shadow">
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">Our Mission</h2>
+            <p class="text-gray-600">Our mission is to disrupt the traditional hiring process through the use of innovative AI technology.</p>
+        </div>
+    </div>
 </section>
 
 {% endblock content %}
