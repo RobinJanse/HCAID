@@ -3,3 +3,4 @@ django-tailwind
 shap
 djangorestframework
 cookiecutter
+gunicorn
