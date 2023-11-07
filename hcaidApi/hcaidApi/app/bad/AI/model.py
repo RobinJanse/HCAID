@@ -13,7 +13,7 @@ class AIModelBad:
             print("Loading model from file: ", filename)
             return pickle.load(open(filename, 'rb'))
         
-        self.rfc_model = load_model(os.path.join(os.getcwd(), 'Model/rfc_model.pkl'))
+        self.rfc_model = load_model(os.path.join(os.getcwd(), 'HCAID/hcaidApi/Model/rfc_model.pkl'))
 
         # self.ann_model = load_model(os.path.join(settings.BASE_DIR, 'hcaidApi\\app\\bad\\AI\\models\\ann_model.pkl'))
         # self.svc_model = load_model(os.path.join(settings.BASE_DIR, 'hcaidApi\\app\\bad\\AI\\models\\svc_model.pkl'))
