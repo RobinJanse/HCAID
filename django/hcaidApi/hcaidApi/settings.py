@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-2ls_zhni7f=@b6^j%ywv7xpq+q7c9c=+5+_z46=ik2-q1#jo8t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.pythonanywhere.com']
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
 
@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "tailwind",
-    "theme",
     'hcaidApi', # Apparently this is needed to make the app work
 ]
 
@@ -120,13 +119,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-TAILWIND_APP_NAME = 'theme'
-
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'theme/static_src'),
-]
-STATIC_ROOT = os.path.join(BASE_DIR, 'theme', 'static')
+STATICFILES_DIRS = []
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
