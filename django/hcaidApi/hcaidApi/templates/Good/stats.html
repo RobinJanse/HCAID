@@ -2,22 +2,79 @@
 {% load static %}
 
 {% block content %}
-<section style="padding: 1.5rem;" class="main-content">
-    <h1 style="font-size: 2.25rem; font-weight: bold; color: #333; text-align: center; margin-bottom: 1rem;" class="text-4xl font-bold text-center text-gray-800">Job Applications Statistics</h1>
+
+<section style="padding: 1.5rem; font-family: Arial;" class="main-content">
+    <h1 style="font-size: 2.25rem; font-weight: bold; color: #333; text-align: center; margin-bottom: 1rem;" class="text-4xl font-bold text-center text-gray-800">Mental Health Prediction</h1>
 
     <div style="text-align: center;">
-        <h2 style="font-size: 1.125rem; font-weight: bold; color: #333; margin-bottom: 0.5rem;" class="text-2xl font-bold text-gray-600 mb-2">Statistics Overview</h2>
-        <p style="font-size: 1rem; color: #333; margin-bottom: 1rem;" class="text-gray-600 mb-4">This page shows the statistics of the job applications that have been processed by the system. The AI model, based on machine learning, makes predictions about the applications. The model has a test accuracy of RFC accuracy: 70.29%, indicating its ability to make accurate predictions.</p>
-        <p style="font-size: 1rem; color: #333;">Keep in mind that the predicted application decision is based on machine learning, where features like age, gender, country, and seeking help are significant factors in the decision-making process.</p>
+        <h2 style="font-size: 1.125rem; font-weight: bold; color: #333; margin-bottom: 0.5rem;" class="text-2xl font-bold text-gray-600 mb-2">Prediction Overview</h2>
+        <p style="font-size: 1rem; color: #333; margin-bottom: 1rem;" class="text-gray-600 mb-4">This page presents the analysis of employer-related data processed by our system. The AI model evaluates how different aspects of the workplace, such as mental health benefits, discussion of mental health, and awareness of coverage, correlate with mental health conditions.</p>
+        <p style="font-size: 1rem; color: #333;">Based on machine learning, the model categorizes the risk of mental health conditions as <b>Yes</b> (possible risk), <b>Maybe</b> (slight risk), or <b>No</b> (no risk), considering the employer information provided.</p>
+        <p style="font-size: 1rem; color: #333;">Be weary that this is an AI-generated prediction, and it is not a substitute for a professional diagnosis.</p>
+    </div>    
+
+    <!-- Add prediction result -->
+    <div style="display: grid; grid-template-columns: 1fr; grid-gap: 1rem; @apply md:grid-cols-2 md:gap-6; margin-top: 50px; margin-left: 50px; margin-right: 50px;">
+        <div style="background-color: white; padding: 1.5rem; border-radius: 0.375rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
+            <h3 style="font-size: 1.125rem; font-weight: bold; color: #333; margin-bottom: 0.5rem;">Predicted Decision</h3>
+            <p style="font-size: 1rem; color: #333;"><i>Your predicted decision is: {{ prediction }}</i></p>
+            <!-- Explain the result -->
+            <p>
+                Explanation:
+
+                <br><br>
+
+                <b>Yes</b> - There is a <i>possible</i> risk that a mental health condition can be correlated with the employer information you provided. <br>
+                <b>Maybe</b> - There is a <i>slight</i> possibility that a mental health condition can be correlated with the employer information you provided. <br>
+                <b>No</b> - There is <i>no</i> risk that a mental health condition can be correlated with the employer information you provided. <br>
+            </p>
+        </div>
     </div>
+
+    <hr style="margin-top: 50px; margin-bottom: 50px; border: 0; border-top: 1px solid #000;">
+
+    <h1 style="font-size: 2.25rem; font-weight: bold; color: #333; text-align: center; margin-bottom: 1rem;" class="text-4xl font-bold text-center text-gray-800">Your answers</h1>
+    <p style="font-size: 1rem; color: #333; margin-bottom: 1rem; text-align: center;" class="text-gray-600 mb-4">By pressing the <b>?</b> button, you can get a better insight in what the impact is.</p>
 
     <div style="display: grid; grid-template-columns: 1fr; grid-gap: 1rem; @apply md:grid-cols-2 md:gap-6; margin-top: 50px; margin-left: 50px; margin-right: 50px;">
         {% for statistic in statistics_data %}
             <div style="background-color: white; padding: 1.5rem; border-radius: 0.375rem; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
-                <h3 style="font-size: 1.125rem; font-weight: bold; color: #333; margin-bottom: 0.5rem;">{{ statistic.title }}</h3>
-                <p style="font-size: 1rem; color: {% if statistic.title == 'Prediction Value' %}{% if statistic.value == 'Yes' %}green{% else %}red{% endif %}{% else %}inherit{% endif %};"><b>{{ statistic.value }}</b></p>
+                <h3 style="font-size: 1.125rem; font-weight: bold; color: #333; margin-bottom: 0.5rem;">
+                    {{ statistic.title }}
+                    <button onclick="showExplanation('{{ statistic.title }}', '{{ statistic.explanation }}', '{{ statistic.importance }}')" style="margin-left: 10px; font-size: 0.875rem; padding: 0.25rem 0.5rem;">?</button>
+                </h3>
+                <p style="font-size: 1rem; color: #333;"><i>Your answer: {{ statistic.value }}</i></p>
+            </div>
+
+            <div id="explanationModal" style="display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
+                <div style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%;">
+                    <span id="close" style="color: #aaa; float: right; font-size: 28px; font-weight: bold;">&times;</span>
+                    <p id="explanationText"></p>
+                </div>
             </div>
         {% endfor %}
     </div>
 </section>
+
+<!-- Explanation Modal/Tooltip Script -->
+<script>
+function showExplanation(featureName, explanation, importance) {
+    var modal = document.getElementById("explanationModal");
+    var span = document.getElementById("close");
+    var text = document.getElementById("explanationText");
+
+    text.innerHTML = "Explanation for <b>" + featureName + "</b> is: <br><br>" + explanation + "<br><br>The AI model importance is: " + importance;
+    modal.style.display = "block";
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+}
+</script>
 {% endblock content %}

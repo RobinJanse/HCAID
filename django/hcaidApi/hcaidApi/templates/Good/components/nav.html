@@ -1,6 +1,9 @@
 {% load static %}
 
-<nav style="background-color: #39a774; padding: 0.5rem 0; margin: 0; width: 100%;">
+<!-- Include the Google Font in the main template where this navbar is included -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+<nav style="background-color: #39a774; padding: 0.5rem 0; margin: 0; width: 100%; font-family: 'Roboto', sans-serif;">
   <div style="max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
     <div style="display: flex; align-items: center;">
       <a href="#" style="text-decoration: none; color: #fff; display: flex; align-items: center;">
@@ -19,9 +22,15 @@
           <a href="/good/privacy" style="text-decoration: none; color: #ccc; font-weight: 600; transition: color 0.3s;">Privacy</a>
         </li>
         <li>
-          <a href="/good/stats" style="text-decoration: none; color: #ccc; font-weight: 600; transition: color 0.3s;">Statistic</a>
+          <a href="/good/stats" style="text-decoration: none; color: #ccc; font-weight: 600; transition: color 0.3s;">Prediction Information</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
+
+<style>
+  nav a:hover {
+    color: #fff;
+  }
+</style>

@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-2ls_zhni7f=@b6^j%ywv7xpq+q7c9c=+5+_z46=ik2-q1#jo8t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.pythonanywhere.com']
+ALLOWED_HOSTS = ['.pythonanywhere.com', '127.0.0.1']
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
 
@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "tailwind",
     'hcaidApi', # Apparently this is needed to make the app work
 ]
 

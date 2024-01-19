@@ -13,40 +13,32 @@ def index(request: HttpRequest):
         form = GoodApplyForm(request.POST)
 
         if form.is_valid():
-            if form.cleaned_data["accept_terms"] == False:
+            if form.cleaned_data["privacy_box"] == False:
                 print("User did not accept terms")
 
                 return render(request, "good/apply.html", {"form": form, "error": "You must accept the privacy policy."})
             else:
                 print("User accepted terms")
-                
-                databaseInput = GoodApply(
-                    age=form.cleaned_data["age"], 
-                    gender=form.cleaned_data["gender"], 
-                    country=form.cleaned_data["country"], 
-                    seek_help=form.cleaned_data["seek_help"], 
-                    tech_company=form.cleaned_data["tech_company"], 
-                    remote_work=form.cleaned_data["remote_work"]
-                )
 
                 #databaseInput.save()
             print(form.cleaned_data)
 
-            print("Age: ", form.cleaned_data["age"])
-            print("Gender: ", form.cleaned_data["gender"])
-
-            # Gender can either be Female, Male or Other
-            gender = form.cleaned_data["gender"].lower()  # Convert to lowercase
-            gender = "Male" if gender == "male" else "Female" if gender == "female" else "Other"
-
             prediction = model.predict_good(
-                form.cleaned_data["age"], 
-                form.cleaned_data["gender"], 
-                form.cleaned_data["country"], 
-                form.cleaned_data["seek_help"], 
-                form.cleaned_data["tech_company"], 
-                form.cleaned_data["remote_work"]
+                form.cleaned_data["employer_mental_health_benefits"], 
+                form.cleaned_data["awareness_of_mental_health_coverage"], 
+                form.cleaned_data["employer_discussed_mental_health"], 
+                form.cleaned_data["employer_mental_health_resources"], 
+                form.cleaned_data["anonymity_protection"], 
+                form.cleaned_data["ease_of_medical_leave_for_mental_health"],
+                form.cleaned_data["employer_react_negative_mental_health"], 
+                form.cleaned_data["employer_seriousness_mental_vs_physical"], 
+                form.cleaned_data["observed_consequences_mental_health"], 
+                form.cleaned_data["mental_health_impact_on_productivity"]
             )
+
+            print("Prediction: ", prediction)
+            prediction = ["Maybe", "No", "Yes"][prediction]
+
             #do prediction here
             print("Good model predicted ", prediction)
 
