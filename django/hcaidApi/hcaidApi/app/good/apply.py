@@ -36,7 +36,6 @@ def index(request: HttpRequest):
                 form.cleaned_data["mental_health_impact_on_productivity"]
             )
 
-            print("Prediction: ", prediction)
             prediction = ["Maybe", "No", "Yes"][prediction]
 
             #do prediction here

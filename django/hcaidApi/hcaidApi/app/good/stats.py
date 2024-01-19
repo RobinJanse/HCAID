@@ -5,6 +5,7 @@ def index(request: HttpRequest):
 
     form = request.session.get('form', '')
     prediction = request.session.get('prediction', '')
+    shap = request.session.get('shap', '')
 
     # Feature importances (assuming these are already calculated and normalized)
     feature_importances = {
