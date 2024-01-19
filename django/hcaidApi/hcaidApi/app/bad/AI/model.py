@@ -15,9 +15,6 @@ class AIModelBad:
         
         self.rfc_model = load_model(os.path.join(os.getcwd(), 'Model/rfc_model.pkl'))
 
-        # self.ann_model = load_model(os.path.join(settings.BASE_DIR, 'hcaidApi\\app\\bad\\AI\\models\\ann_model.pkl'))
-        # self.svc_model = load_model(os.path.join(settings.BASE_DIR, 'hcaidApi\\app\\bad\\AI\\models\\svc_model.pkl'))
-
     def predict_bad(self, age, gender, country, seek_help, tech_company, remote_work):
         print("Predicting bad employee")
 
