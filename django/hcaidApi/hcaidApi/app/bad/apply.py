@@ -12,22 +12,21 @@ def index(request: HttpRequest):
     if request.method == "POST":
         form = BadApplyForm(request.POST)
 
-
         if form.is_valid():
+            prediction = good_model.predict_dt(
+                form.cleaned_data["employer_mental_health_benefits"], 
+                form.cleaned_data["awareness_of_mental_health_coverage"], 
+                form.cleaned_data["employer_discussed_mental_health"], 
+                form.cleaned_data["employer_mental_health_resources"], 
+                form.cleaned_data["anonymity_protection"], 
+                form.cleaned_data["ease_of_medical_leave_for_mental_health"],
+                form.cleaned_data["employer_react_negative_mental_health"], 
+                form.cleaned_data["employer_seriousness_mental_vs_physical"], 
+                form.cleaned_data["observed_consequences_mental_health"], 
+                form.cleaned_data["mental_health_impact_on_productivity"]
+            )
 
-            if form.cleaned_data["accept_terms"] == False:
-                print("User did not accept terms")
-                return render(request, "good/apply.html", {"form": form, "error": "You must accept the privacy policy."})
-            else:
-                print("User accepted terms")
-                databaseInput = BadApply(age=form.cleaned_data["age"], gender=form.cleaned_data["gender"], country=form.cleaned_data["country"], seek_help=form.cleaned_data["seek_help"], tech_company=form.cleaned_data["tech_company"], remote_work=form.cleaned_data["remote_work"])
-                #databaseInput.save()
-            print(form.cleaned_data)
-
-
-            prediction = model.predict_bad(form.cleaned_data["age"], form.cleaned_data["gender"], form.cleaned_data["country"], form.cleaned_data["seek_help"], form.cleaned_data["tech_company"], form.cleaned_data["remote_work"])
-            #do prediction here
-            print("Bad model predicted ", prediction)
+            prediction = ["Maybe", "No", "Yes"][prediction]
 
             request.session["prediction"] = prediction #store prediction in session
             request.session['form'] = form.cleaned_data #store form data in session

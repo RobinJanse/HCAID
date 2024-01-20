@@ -6,36 +6,42 @@ import os
 from django.conf import settings
 
 
-class AIModelBad:
+class AIModelGood:
     def __init__(self):
         def load_model(filename):
             print("Loading model from file: ", filename)
             return pickle.load(open(filename, 'rb'))
         
-        self.rfc_model = load_model(os.path.join(os.getcwd(), 'hcaidApi\\app\\bad\\AI\\models\\mental_health_model.pkl'))
+        self.dt_model = load_model(os.path.join(os.getcwd(), 'hcaidApi\\app\\good\\AI\\models\\mental_health_model_dt.pkl'))
 
-        # self.ann_model = load_model(os.path.join(settings.BASE_DIR, 'hcaidApi\\app\\bad\\AI\\models\\ann_model.pkl'))
-        # self.svc_model = load_model(os.path.join(settings.BASE_DIR, 'hcaidApi\\app\\bad\\AI\\models\\svc_model.pkl'))
-
-    def predict_bad(self, age, gender, country, seek_help, tech_company, remote_work):
-        print("Predicting bad employee")
-        print(age)
-
-        X = np.array([0, 0, 0.4, 0, 0, 0]).reshape(1, -1)
-
-        print("X: ", X)
-
-        #X = self.scaler.transform(X)
-        print("Using ANN model")
-        prediction = self.ann_model.predict(X)
-        print("Using SVC model: ", prediction)
-        if(prediction == 1):
-            prediction = self.svc_model.predict(X)
-            print("Using SVC model: ", prediction)
-
-        if(prediction < 0.5):
-            prediction = 0
-        else:
-            prediction = 1
-        return prediction
+    def predict_dt(self,
+        employer_mental_health_benefits, 
+        awareness_of_mental_health_coverage, 
+        employer_discussed_mental_health, 
+        employer_mental_health_resources, 
+        anonymity_protection, 
+        ease_of_medical_leave_for_mental_health,
+        employer_react_negative_mental_health,
+        employer_seriousness_mental_vs_physical,
+        observed_consequences_mental_health,
+        mental_health_impact_on_productivity
+    ):
+        print("Predicting using the decision tree model")
+        
+        X = np.array([[
+            employer_mental_health_benefits, 
+            awareness_of_mental_health_coverage, 
+            employer_discussed_mental_health, 
+            employer_mental_health_resources, 
+            anonymity_protection, 
+            ease_of_medical_leave_for_mental_health,
+            employer_react_negative_mental_health,
+            employer_seriousness_mental_vs_physical,
+            observed_consequences_mental_health,
+            mental_health_impact_on_productivity
+        ]])
+        prediction = self.dt_model.predict(X)
+        prediction_list = prediction.tolist()
+        
+        return prediction_list[0]
         

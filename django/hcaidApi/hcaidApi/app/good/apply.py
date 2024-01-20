@@ -14,16 +14,9 @@ def index(request: HttpRequest):
 
         if form.is_valid():
             if form.cleaned_data["privacy_box"] == False:
-                print("User did not accept terms")
-
                 return render(request, "good/apply.html", {"form": form, "error": "You must accept the privacy policy."})
-            else:
-                print("User accepted terms")
 
-                #databaseInput.save()
-            print(form.cleaned_data)
-
-            prediction = model.predict_good(
+            prediction = good_model.predict_dt(
                 form.cleaned_data["employer_mental_health_benefits"], 
                 form.cleaned_data["awareness_of_mental_health_coverage"], 
                 form.cleaned_data["employer_discussed_mental_health"], 
@@ -37,9 +30,6 @@ def index(request: HttpRequest):
             )
 
             prediction = ["Maybe", "No", "Yes"][prediction]
-
-            #do prediction here
-            print("Good model predicted ", prediction)
 
             request.session["prediction"] = prediction #store prediction in session
             request.session['form'] = form.cleaned_data #store form data in session

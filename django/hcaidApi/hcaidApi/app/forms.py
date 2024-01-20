@@ -112,8 +112,6 @@ class BadApplyForm(forms.Form):
         required=True,
     )
 
-    privacy_box = forms.BooleanField(label=mark_safe('I accept the Privacy Policy'), required=True, widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}))
-
 class GoodApplyForm(forms.Form):
     employer_mental_health_benefits = forms.ChoiceField(
         choices=[
