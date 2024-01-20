@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +30,7 @@ SECRET_KEY = "django-insecure-2ls_zhni7f=@b6^j%ywv7xpq+q7c9c=+5+_z46=ik2-q1#jo8t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.pythonanywhere.com', '127.0.0.1']
+ALLOWED_HOSTS = ['.pythonanywhere.com', '127.0.0.1', '.herokuapp.com']
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
 
