@@ -1,1 +1,1 @@
-web: python manage.py runserver 0.0.0.0:\$PORT
+web: cd django/hcaidApi && python manage.py runserver 0.0.0.0:$PORT
