@@ -4,4 +4,4 @@ djangorestframework
 numpy
 pandas
 django_heroku
-sklearn
+scikit-learn
