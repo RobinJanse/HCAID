@@ -4,4 +4,4 @@ djangorestframework
 numpy
 pandas
 django_heroku
-scikit-learn
+scikit-learn==1.3.0
