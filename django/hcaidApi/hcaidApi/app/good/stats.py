@@ -9,16 +9,16 @@ def index(request: HttpRequest):
 
     # Feature importances (assuming these are already calculated and normalized)
     feature_importances = {
-        'ease_of_medical_leave_for_mental_health': 0.219599,
-        'employer_mental_health_resources': 0.118290,
-        'employer_seriousness_mental_vs_physical': 0.110994,
-        'employer_mental_health_benefits': 0.107426,
-        'employer_react_negative_mental_health': 0.100081,
-        'awareness_of_mental_health_coverage': 0.100004,
-        'employer_discussion_on_mental_health': 0.090216,
-        'anonymity_protection': 0.084450,
-        'mental_health_impact_on_productivity': 0.036525,
-        'observed_consequences_mental_health': 0.032414
+        'ease_of_medical_leave_for_mental_health': 0.223687,
+        'employer_seriousness_mental_vs_physical': 0.113213,
+        'employer_mental_health_resources': 0.110450,
+        'awareness_of_mental_health_coverage': 0.104837,
+        'employer_react_negative_mental_health': 0.101745,
+        'employer_mental_health_benefits': 0.100263,
+        'employer_discussion_on_mental_health': 0.096534,
+        'anonymity_protection': 0.077975,
+        'mental_health_impact_on_productivity': 0.038535,
+        'observed_consequences_mental_health': 0.032761
     }
 
     feature_explanations = {

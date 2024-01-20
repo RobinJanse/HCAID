@@ -12,6 +12,7 @@ from hcaidApi.app.good import home as good_home
 from hcaidApi.app.good import apply as good_apply
 from hcaidApi.app.good import stats as good_stats
 from hcaidApi.app.good import privacy as good_privacy
+from hcaidApi.app.good import persona as good_persona
 
 bad_patterns = [
     path("", bad_home.index),
@@ -25,6 +26,7 @@ good_patterns = [
     path("apply/", good_apply.index),
     path("stats/", good_stats.index),
     path("privacy/", good_privacy.index),
+    path("persona/", good_persona.index)
 ]
 
 urlpatterns = [
