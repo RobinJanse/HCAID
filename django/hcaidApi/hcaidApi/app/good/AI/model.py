@@ -17,7 +17,7 @@ class AIModelGood:
         # Print the path of the current file
         print("Current file path: ", os.path.dirname(__file__))
 
-        model_path = os.path.join(os.path.dirname(__file__), 'AI', 'models', 'mental_health_model_dt.pkl')
+        model_path = os.path.join(os.path.dirname(__file__), 'models', 'mental_health_model_dt.pkl')
         self.dt_model = load_model(model_path)
 
     def predict_dt(self,

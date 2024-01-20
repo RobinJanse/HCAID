@@ -13,7 +13,7 @@ class AIModelBad:
             print("Loading model from file: ", filename)
             return pickle.load(open(filename, 'rb'))
         
-        model_path = os.path.join(os.path.dirname(__file__), 'AI', 'models', 'mental_health_model.pkl')
+        model_path = os.path.join(os.path.dirname(__file__), 'models', 'mental_health_model.pkl')
         self.rfc_model = load_model(model_path)
 
     def predict_rfc(self, 
