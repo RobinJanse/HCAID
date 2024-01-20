@@ -13,7 +13,7 @@ class AIModelBad:
             print("Loading model from file: ", filename)
             return pickle.load(open(filename, 'rb'))
         
-        self.rfc_model = load_model(os.path.join(os.getcwd(), 'django\\hcaidApi\\app\\bad\\AI\\models\\mental_health_model.pkl'))
+        self.rfc_model = load_model(os.path.join(os.getcwd(), 'django\\hcaidApi\\hcaidApi\\app\\bad\\AI\\models\\mental_health_model.pkl'))
 
     def predict_rfc(self, 
         employer_mental_health_benefits, 

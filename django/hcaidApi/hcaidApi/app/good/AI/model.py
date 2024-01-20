@@ -12,7 +12,7 @@ class AIModelGood:
             print("Loading model from file: ", filename)
             return pickle.load(open(filename, 'rb'))
         
-        self.dt_model = load_model(os.path.join(os.getcwd(), 'django\\hcaidApi\\app\\good\\AI\\models\\mental_health_model_dt.pkl'))
+        self.dt_model = load_model(os.path.join(os.getcwd(), 'django\\hcaidApi\\hcaidApi\\app\\good\\AI\\models\\mental_health_model_dt.pkl'))
 
     def predict_dt(self,
         employer_mental_health_benefits, 
