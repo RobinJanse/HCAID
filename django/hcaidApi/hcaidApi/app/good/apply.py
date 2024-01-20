@@ -14,7 +14,7 @@ def index(request: HttpRequest):
 
         if form.is_valid():
             if form.cleaned_data["privacy_box"] == False:
-                return render(request, "good/apply.html", {"form": form, "error": "You must accept the privacy policy."})
+                return render(request, "Good/apply.html", {"form": form, "error": "You must accept the privacy policy."})
 
             prediction = good_model.predict_dt(
                 form.cleaned_data["employer_mental_health_benefits"], 
@@ -38,4 +38,4 @@ def index(request: HttpRequest):
     else:
         form = GoodApplyForm()
 
-    return render(request, "good/apply.html", {"form": form})
+    return render(request, "Good/apply.html", {"form": form})
