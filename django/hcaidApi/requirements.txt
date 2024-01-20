@@ -1,3 +1,6 @@
 django
 django-tailwind
 djangorestframework
+numpy
+pandas
+django_heroku
