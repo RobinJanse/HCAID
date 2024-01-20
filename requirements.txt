@@ -1,5 +1,3 @@
 django
 django-tailwind
-shap
 djangorestframework
-cookiecutter
