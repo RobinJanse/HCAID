@@ -1,4 +1,4 @@
 from django.shortcuts import render
 
 def index(request):
-    return render(request, 'bad/privacy.html')
+    return render(request, 'Bad/privacy.html')

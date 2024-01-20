@@ -35,4 +35,4 @@ def index(request: HttpRequest):
         form = BadApplyForm()
         
 
-    return render(request, "bad/apply.html", {"form": form})
+    return render(request, "Bad/apply.html", {"form": form})

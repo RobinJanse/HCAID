@@ -65,4 +65,4 @@ def index(request: HttpRequest):
         'statistics_data': statistics_data,
     }
     
-    return render(request, 'bad/stats.html', context)
+    return render(request, 'Bad/stats.html', context)
