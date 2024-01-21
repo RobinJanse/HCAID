@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpRequest
 
 def index(request: HttpRequest):
@@ -6,6 +6,14 @@ def index(request: HttpRequest):
     form = request.session.get('form', '')
     prediction = request.session.get('prediction', '')
     shap = request.session.get('shap', '')
+
+    # If the form is empty, redirect to the home page
+    if not form:
+        return redirect('/')
+    
+    # If the prediction is empty, redirect to the home page
+    if not prediction:
+        return redirect('/')
 
     # Feature importances (assuming these are already calculated and normalized)
     feature_importances = {
